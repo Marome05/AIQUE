@@ -1,4 +1,4 @@
-AIQUE Interactive Website Prototype — Version 20
+AIQUE Interactive Website Prototype — Version 22
 
 Open index.html in a modern browser.
 
@@ -19,3 +19,7 @@ V19: redesigned Let's Talk gateway, fixed descender-safe heading spacing, and re
 
 
 V20: removed Careers from the top navigation and simplified business-facing copy across the site.
+
+V21 updates: top navigation renamed to Our Work; homepage hero scales down on standard desktop but retains the large-screen size; added pointer-reactive section lighting, additional parallax depth, animated section orbits, and stronger interactive motion throughout.
+
+V22: renamed top navigation to About Us, removed floating circular ornaments, and added an elegant dancing-fire gradient animation to the Our Work showcase.

@@ -160,7 +160,7 @@
           if (rect.bottom < -260 || rect.top > innerHeight + 260) continue;
           const speed = parseFloat(el.dataset.speed) || 0;
           const center = rect.top + rect.height*.5 - innerHeight*.5;
-          el.style.transform = `translate3d(0,${center * -speed * .095}px,0)`;
+          el.style.transform = `translate3d(0,${center * -speed * .14}px,0)`;
         }
         for (const el of parallaxNodes) {
           const rect = el.getBoundingClientRect();
@@ -933,5 +933,50 @@
       button.disabled = true;
     }
     status?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+})();
+
+
+/* =========================================================
+   V21 — pointer-reactive section light + hero depth
+   ========================================================= */
+(() => {
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(pointer:fine)').matches;
+  if (!fine || reduceMotion) return;
+
+  document.querySelectorAll('.interactive-section-v21').forEach(section => {
+    section.addEventListener('pointermove', e => {
+      const r = section.getBoundingClientRect();
+      const x = ((e.clientX-r.left)/Math.max(1,r.width))*100;
+      const y = ((e.clientY-r.top)/Math.max(1,r.height))*100;
+      section.style.setProperty('--gx', `${x.toFixed(1)}%`);
+      section.style.setProperty('--gy', `${y.toFixed(1)}%`);
+    }, {passive:true});
+    section.addEventListener('pointerleave', () => {
+      section.style.setProperty('--gx','72%');
+      section.style.setProperty('--gy','28%');
+    }, {passive:true});
+  });
+
+  document.querySelectorAll('.hero-v8').forEach(hero => {
+    const ambient = hero.querySelector('.hero-depth-v21');
+    const panel = hero.querySelector('.hero-v8-brand-panel');
+    if (!ambient && !panel) return;
+    hero.addEventListener('pointermove', e => {
+      const r=hero.getBoundingClientRect();
+      const nx=((e.clientX-r.left)/Math.max(1,r.width)-.5);
+      const ny=((e.clientY-r.top)/Math.max(1,r.height)-.5);
+      ambient?.style.setProperty('--hero-depth-x', `${(nx*15).toFixed(2)}px`);
+      ambient?.style.setProperty('--hero-depth-y', `${(ny*11).toFixed(2)}px`);
+      panel?.style.setProperty('--panel-depth-x', `${(nx*-9).toFixed(2)}px`);
+      panel?.style.setProperty('--panel-depth-y', `${(ny*-7).toFixed(2)}px`);
+    },{passive:true});
+    hero.addEventListener('pointerleave',()=>{
+      ambient?.style.setProperty('--hero-depth-x','0px');
+      ambient?.style.setProperty('--hero-depth-y','0px');
+      panel?.style.setProperty('--panel-depth-x','0px');
+      panel?.style.setProperty('--panel-depth-y','0px');
+    },{passive:true});
   });
 })();

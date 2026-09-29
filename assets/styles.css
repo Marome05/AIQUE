@@ -2818,3 +2818,257 @@ body.application-modal-open{overflow:hidden}
  .site-end-cta-v19{padding:72px 20px}.site-end-cta-card-v19{display:block;min-height:0;padding:34px 24px}.site-end-cta-copy-v19{margin-top:28px}.site-end-cta-copy-v19 h2{font-size:clamp(44px,12vw,66px);line-height:1;padding-bottom:.06em}.site-end-cta-paths-v19{margin-top:30px;flex-wrap:wrap}.site-end-cta-button-v19{margin-top:42px;display:flex;flex-direction:row;align-items:center;justify-content:space-between}.site-end-cta-button-v19 b{width:58px;height:58px}
 }
 @media(prefers-reduced-motion:reduce){.connect-aura-v19 i,.site-end-cta-card-v19:before{animation:none!important}}
+
+/* =========================================================
+   V21 — Our Work nav, desktop hero tuning, richer motion depth
+   ========================================================= */
+
+/* Slightly smaller homepage hero type on standard desktop screens.
+   Large desktop / wide-screen presentation keeps the V20 scale. */
+@media (min-width:901px) and (max-width:1599px){
+  .site-v21.home-page .hero-v8-title{
+    font-size:clamp(62px,7vw,108px)!important;
+    max-width:940px!important;
+    line-height:.91!important;
+  }
+  .site-v21.home-page .hero-v8-copy{grid-column:1/span 8}
+  .site-v21.home-page .hero-v8-brand-panel{grid-column:9/span 4}
+}
+@media (min-width:1600px){
+  .site-v21.home-page .hero-v8-title{
+    font-size:clamp(78px,8.9vw,142px)!important;
+    max-width:1100px!important;
+  }
+}
+
+/* Homepage hero reacts gently to pointer movement without disturbing copy. */
+.site-v21 .hero-depth-v21{
+  translate:var(--hero-depth-x,0px) var(--hero-depth-y,0px);
+  transition:translate .65s cubic-bezier(.16,1,.3,1);
+  will-change:translate;
+}
+.site-v21 .hero-v8-brand-panel{
+  translate:var(--panel-depth-x,0px) var(--panel-depth-y,0px);
+  transition:translate .7s cubic-bezier(.16,1,.3,1),box-shadow .55s ease;
+}
+.site-v21 .hero-v8-brand-panel:hover{box-shadow:0 38px 100px rgba(41,147,239,.14)}
+
+/* Reusable interactive sections: restrained cursor light + parallax orbit. */
+.site-v21 .interactive-section-v21{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  --gx:72%;
+  --gy:28%;
+}
+.site-v21 .interactive-section-v21>.interactive-glow-v21{
+  position:absolute;
+  inset:-1px;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(520px circle at var(--gx) var(--gy),rgba(33,150,243,.075),rgba(29,225,223,.035) 30%,transparent 68%);
+  opacity:.85;
+  transition:opacity .4s ease;
+}
+.site-v21 .interactive-section-v21:hover>.interactive-glow-v21{opacity:1}
+.site-v21 .interactive-section-v21>.section-orbit-v21{
+  position:absolute;
+  z-index:0;
+  width:clamp(260px,31vw,520px);
+  aspect-ratio:1;
+  right:clamp(-230px,-10vw,-100px);
+  top:12%;
+  border-radius:50%;
+  border:1px solid rgba(33,150,243,.11);
+  pointer-events:none;
+  opacity:.7;
+  animation:sectionOrbitSpinV21 26s linear infinite;
+  will-change:translate,transform;
+}
+.site-v21 .interactive-section-v21:nth-of-type(even)>.section-orbit-v21{
+  right:auto;
+  left:clamp(-230px,-10vw,-100px);
+  top:auto;
+  bottom:10%;
+  border-color:rgba(29,225,223,.13);
+  animation-direction:reverse;
+  animation-duration:32s;
+}
+.site-v21 .section-orbit-v21:before,
+.site-v21 .section-orbit-v21:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(29,225,223,.11);
+  inset:16%;
+}
+.site-v21 .section-orbit-v21:after{inset:34%;border-color:rgba(44,60,80,.10)}
+.site-v21 .section-orbit-v21 i{position:absolute;width:8px;height:8px;border-radius:50%;background:#2196F3;box-shadow:0 0 0 7px rgba(33,150,243,.07),0 0 22px rgba(33,150,243,.24)}
+.site-v21 .section-orbit-v21 i:nth-child(1){left:49%;top:-4px}
+.site-v21 .section-orbit-v21 i:nth-child(2){right:7%;top:52%;background:#1de1df;box-shadow:0 0 0 7px rgba(29,225,223,.06),0 0 22px rgba(29,225,223,.22)}
+.site-v21 .section-orbit-v21 i:nth-child(3){left:12%;bottom:16%;background:#2c3c50;box-shadow:none}
+.site-v21 .interactive-section-v21> :not(.interactive-glow-v21):not(.section-orbit-v21){position:relative;z-index:1}
+@keyframes sectionOrbitSpinV21{to{transform:rotate(360deg)}}
+
+/* Give key rows/cards a little more responsive lift and depth. */
+.site-v21 .service-card,
+.site-v21 .culture-card,
+.site-v21 .about-value-v12,
+.site-v21 .project-feature-v16,
+.site-v21 .project-more-card-v14,
+.site-v21 .role-row-v14,
+.site-v21 .connect-route-v19{
+  --v21x:50%;
+  --v21y:50%;
+}
+.site-v21 .service-card:after,
+.site-v21 .about-value-v12:before,
+.site-v21 .project-feature-v16:before,
+.site-v21 .project-more-card-v14:after{
+  transition:transform .75s var(--ease),opacity .45s ease,background-position .45s ease;
+}
+.site-v21 .project-feature-v16:hover,
+.site-v21 .about-value-v12:hover,
+.site-v21 .project-more-card-v14:hover{
+  box-shadow:0 32px 85px rgba(18,49,68,.11);
+}
+
+/* Stronger but still restrained scroll depth. */
+.site-v21 [data-speed],.site-v21 [data-parallax]{will-change:transform,translate}
+
+@media(max-width:900px){
+  .site-v21 .interactive-section-v21>.section-orbit-v21{opacity:.34;width:360px}
+  .site-v21 .interactive-section-v21>.interactive-glow-v21{opacity:.5}
+}
+@media(max-width:680px){
+  .site-v21 .interactive-section-v21>.section-orbit-v21{display:none}
+  .site-v21 .interactive-section-v21>.interactive-glow-v21{background:radial-gradient(300px circle at 80% 18%,rgba(33,150,243,.055),transparent 70%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-v21 .section-orbit-v21{animation:none!important}
+  .site-v21 .hero-depth-v21,.site-v21 .hero-v8-brand-panel{translate:none!important}
+}
+
+/* =========================================================
+   V22 — cleaner ornamentation + elegant "dancing fire" work gradients
+   ========================================================= */
+
+/* Explicitly remove the floating circular ornaments introduced in earlier passes. */
+.site-v22 .aique-energy-global-v13,
+.site-v22 .section-orbit-v21{display:none!important}
+.site-v22 .interactive-section-v21> :not(.interactive-glow-v21){position:relative;z-index:1}
+
+/* Keep the top navigation wording readable after the longer "About Us" label. */
+.site-v22 header.site-header .nav-links{gap:32px}
+.site-v22 header.site-header .nav-link{white-space:nowrap}
+
+/* OUR WORK — refined animated color field.
+   Instead of outlined circles, soft vertical color forms rise and sway like fire. */
+.work-index-page.site-v22 .work-panel .mesh{display:none!important}
+.work-index-page.site-v22 .work-panel .panel-bg{
+  background-size:170% 170%!important;
+  animation:workFireBaseV22 18s cubic-bezier(.45,.05,.55,.95) infinite alternate!important;
+  filter:saturate(1.02) contrast(1.01);
+}
+.work-index-page.site-v22 .work-panel:nth-child(even) .panel-bg{animation-duration:21s!important;animation-direction:alternate-reverse!important}
+
+.work-index-page.site-v22 .fire-field-v22{
+  position:absolute;
+  inset:-12% -8% -18%;
+  z-index:-2;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:.92;
+  filter:saturate(1.08);
+  transform:translateZ(0);
+}
+.work-index-page.site-v22 .fire-field-v22:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.04) 0%,transparent 32%,rgba(0,0,0,.09) 68%,rgba(0,0,0,.42) 100%),
+    linear-gradient(90deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.08) 42%,transparent 72%);
+  z-index:4;
+}
+.work-index-page.site-v22 .fire-field-v22 i{
+  position:absolute;
+  bottom:-30%;
+  width:34%;
+  height:92%;
+  border-radius:48% 52% 38% 62% / 72% 66% 34% 28%;
+  filter:blur(54px);
+  opacity:.28;
+  will-change:transform,opacity;
+  transform-origin:50% 100%;
+  mix-blend-mode:screen;
+}
+.work-index-page.site-v22 .fire-field-v22 i:nth-child(1){
+  left:30%;
+  background:radial-gradient(ellipse at 50% 70%,color-mix(in srgb,var(--p1) 82%,transparent) 0%,color-mix(in srgb,var(--p1) 38%,transparent) 38%,transparent 72%);
+  animation:fireDanceA22 11s ease-in-out infinite alternate;
+}
+.work-index-page.site-v22 .fire-field-v22 i:nth-child(2){
+  left:51%;
+  width:29%;height:105%;
+  background:radial-gradient(ellipse at 48% 72%,color-mix(in srgb,var(--p2) 72%,transparent) 0%,color-mix(in srgb,var(--p2) 30%,transparent) 42%,transparent 74%);
+  animation:fireDanceB22 14s ease-in-out infinite alternate-reverse;
+}
+.work-index-page.site-v22 .fire-field-v22 i:nth-child(3){
+  left:67%;
+  width:25%;height:82%;
+  background:radial-gradient(ellipse at 50% 70%,color-mix(in srgb,var(--p1) 58%,var(--p2)) 0%,color-mix(in srgb,var(--p2) 23%,transparent) 44%,transparent 76%);
+  animation:fireDanceC22 12.5s ease-in-out infinite alternate;
+}
+.work-index-page.site-v22 .fire-field-v22 i:nth-child(4){
+  left:18%;
+  width:23%;height:70%;
+  opacity:.18;
+  background:radial-gradient(ellipse at 50% 72%,color-mix(in srgb,var(--p2) 55%,transparent) 0%,transparent 72%);
+  animation:fireDanceD22 16s ease-in-out infinite alternate-reverse;
+}
+
+/* Per-client tuning keeps the effect elegant and true to each brand. */
+.work-index-page.site-v22 .work-panel.qube{--p1:#08D68C;--p2:#16AAD3}
+.work-index-page.site-v22 .work-panel.supernova{--p1:#01C2D8;--p2:#8CF5FF}
+.work-index-page.site-v22 .work-panel.wtp{--p1:#006FA9;--p2:#4EB7E9}
+.work-index-page.site-v22 .work-panel.narwhal{--p1:#0000FE;--p2:#00FEFE}
+
+@keyframes workFireBaseV22{
+  0%{background-position:18% 22%;transform:scale(1.025)}
+  35%{background-position:45% 38%;transform:scale(1.04)}
+  68%{background-position:72% 58%;transform:scale(1.025)}
+  100%{background-position:84% 74%;transform:scale(1.045)}
+}
+@keyframes fireDanceA22{
+  0%{transform:translate3d(-4%,10%,0) rotate(-5deg) scale(.92,1.02);opacity:.20}
+  48%{transform:translate3d(8%,-5%,0) rotate(5deg) scale(1.08,.96);opacity:.34}
+  100%{transform:translate3d(-2%,-13%,0) rotate(-2deg) scale(.98,1.10);opacity:.25}
+}
+@keyframes fireDanceB22{
+  0%{transform:translate3d(7%,14%,0) rotate(6deg) scale(.94,1.00);opacity:.18}
+  52%{transform:translate3d(-6%,-7%,0) rotate(-6deg) scale(1.06,1.09);opacity:.31}
+  100%{transform:translate3d(4%,-16%,0) rotate(2deg) scale(.97,1.14);opacity:.22}
+}
+@keyframes fireDanceC22{
+  0%{transform:translate3d(-2%,15%,0) rotate(-4deg) scale(.90,1);opacity:.16}
+  55%{transform:translate3d(10%,-2%,0) rotate(7deg) scale(1.10,1.05);opacity:.28}
+  100%{transform:translate3d(-5%,-11%,0) rotate(-1deg) scale(.96,1.12);opacity:.20}
+}
+@keyframes fireDanceD22{
+  0%{transform:translate3d(0,18%,0) rotate(5deg) scale(.9,1);opacity:.10}
+  50%{transform:translate3d(10%,-2%,0) rotate(-5deg) scale(1.06,1.08);opacity:.21}
+  100%{transform:translate3d(-5%,-10%,0) rotate(1deg) scale(.94,1.1);opacity:.14}
+}
+
+@media(max-width:760px){
+  .site-v22 header.site-header .nav-links{gap:12px}
+  .work-index-page.site-v22 .fire-field-v22 i{filter:blur(38px)}
+  .work-index-page.site-v22 .fire-field-v22 i:nth-child(1){left:18%;width:48%}
+  .work-index-page.site-v22 .fire-field-v22 i:nth-child(2){left:45%;width:43%}
+  .work-index-page.site-v22 .fire-field-v22 i:nth-child(3){left:67%;width:37%}
+}
+@media(prefers-reduced-motion:reduce){
+  .work-index-page.site-v22 .work-panel .panel-bg,
+  .work-index-page.site-v22 .fire-field-v22 i{animation:none!important}
+}
